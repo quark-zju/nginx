@@ -111,6 +111,8 @@ void ngx_http_split_args(ngx_http_request_t *r, ngx_str_t *uri,
     ngx_str_t *args);
 ngx_int_t ngx_http_parse_chunked(ngx_http_request_t *r, ngx_buf_t *b,
     ngx_http_chunked_t *ctx);
+ngx_int_t ngx_http_chunked_output_filter(ngx_http_request_t *r,
+    ngx_chain_t *in, ngx_chain_t **output);
 
 
 ngx_http_request_t *ngx_http_create_request(ngx_connection_t *c);
@@ -140,6 +142,8 @@ ngx_int_t ngx_http_send_special(ngx_http_request_t *r, ngx_uint_t flags);
 
 ngx_int_t ngx_http_read_client_request_body(ngx_http_request_t *r,
     ngx_http_client_body_handler_pt post_handler);
+ngx_int_t ngx_http_do_read_non_buffered_client_request_body(
+    ngx_http_request_t *r);
 
 ngx_int_t ngx_http_send_header(ngx_http_request_t *r);
 ngx_int_t ngx_http_special_response_handler(ngx_http_request_t *r,
